@@ -24,29 +24,61 @@ class PFSCharacterCreator(EasyFrame):
         
         self.addButton(text = "Select Character Class", row = 3, column = 0, columnspan = 1, command = self.classSelect)
         
-        self.charClass = self.addTextField(text = "Character Class",
-                                            row = 4,
-                                            column = 0,
-                                            width = 25,
-                                            columnspan = 1,
-                                            rowspan = 1,
-                                            sticky = "NW",
-                                            state = "readonly")
+        self.charClass = self.addTextField(text = "Character Class", row = 4, column = 0, width = 25, columnspan = 1, rowspan = 1, sticky = "NW", state = "readonly")
 
+        #Die roller section - label and buttons to call each die roller
+        self.addLabel(text = "Die Roller", row = 2, column = 8, columnspan = 1, rowspan = 1,sticky = "NSEW")
+        self.addButton(text = "Roll a D20", row = 3, column = 8, columnspan = 1, command = self.rollD20)
+        self.addButton(text = "Roll a D100", row = 4, column = 8, columnspan = 1, command = self.rollD100)
+        self.addButton(text = "Roll a D12", row = 5, column = 8, columnspan = 1, command = self.rollD12)
+        self.addButton(text = "Roll a D10", row = 6, column = 8, columnspan = 1, command = self.rollD10)
+        self.addButton(text = "Roll a D8", row = 7, column = 8, columnspan = 1, command = self.rollD8)
+        self.addButton(text = "Roll a D6", row = 8, column = 8, columnspan = 1, command = self.rollD6)
+        self.addButton(text = "Roll a D4", row = 9, column = 8, columnspan = 1, command = self.rollD4)
+        self.addButton(text = "Roll a D2", row = 10, column = 8, columnspan = 1, command = self.rollD2)
+        self.outputFieldDieRoll = self.addIntegerField(value = "", row = 11, column = 8, state = "readonly")
 
              
         #Testing panels for future use
-        dataPanel = self.addPanel(row = 0, column = 1, background = "gray")
-        dataPanel.addLabel(text = "Label 1", row = 1, column = 1)
-        dataPanel.addTextField(text = "Text1", row = 1, column = 2)
-        dataPanel.addLabel(text = "Label 2", row = 2, column = 2)
-        dataPanel.addTextField(text = "Text1", row = 2, column = 2)
+        #dataPanel = self.addPanel(row = 0, column = 1, background = "gray")
+        #dataPanel.addLabel(text = "Label 1", row = 1, column = 1)
+        #dataPanel.addTextField(text = "Text1", row = 1, column = 2)
+        #dataPanel.addLabel(text = "Label 2", row = 2, column = 2)
+        #dataPanel.addTextField(text = "Text1", row = 2, column = 2)
 
     #Testing a pop-up box for Class Selection with a Radio Button list
     #Current test is using promptString and returns charClass to Output Field
     def classSelect(self):
         charClass = self.prompterBox(title = "Select your Character Class", promptString = "Class")
         self.charClass.setText(charClass)
+
+    #Die Roller - ranges for each game die set - 20 sided (most common at top),
+    #100 sided, 12 sided, 10 sided, 8, 6, 4, and 2 sided.
+    def rollD20(self):
+        d20 = random.randint(1,20)
+        self.outputFieldDieRoll.setNumber(d20)
+    def rollD100(self):
+        d100 = random.randint(1,100)
+        self.outputFieldDieRoll.setNumber(d100)
+    def rollD12(self):
+        d12 = random.randint(1,12)
+        self.outputFieldDieRoll.setNumber(d12)
+    def rollD10(self):
+        d10 = random.randint(1,10)
+        self.outputFieldDieRoll.setNumber(d10)
+    def rollD8(self):
+        d8 = random.randint(1,8)
+        self.outputFieldDieRoll.setNumber(d8)
+    def rollD6(self):
+        d6 = random.randint(1,6)
+        self.outputFieldDieRoll.setNumber(d6)
+    def rollD4(self):
+        d4 = random.randint(1,4)
+        self.outputFieldDieRoll.setNumber(d4)
+    def rollD2(self):
+        d2 = random.randint(1,2)
+        self.outputFieldDieRoll.setNumber(d2) 
+        
         
 def main():
     #Instantiaties and pops up the window.
